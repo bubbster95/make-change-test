@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Make Change</h1>
+
+    <form method="POST"  action="/exchange">
+        <label for="currency">Currency To Exchange</label>
+        <input type="text" name="currency" placeholder="1.50" required>
+        <button>Exchange</button>
+    </form>
+{% endblock %}

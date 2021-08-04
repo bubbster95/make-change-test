@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <title>Make Change</title>
+</head>
+<body>
+  
+  <div class="container">
+    {% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+
+    {% block content %}
+    CONTENT GOES HERE
+    {% endblock %}
+
+    <h1>Add New Coin</h1>
+    <div id="coin-values"></div>
+    <form id="add-coin-form">
+      <div>Coin Name: <input id="name" required> <b id="name-err"></b> </div>
+      <div>Value: <input id="value" required> <b id="value-err"></b> </div>
+      <button>Add Coin</button>
+    </form>
+
+  </div>
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="/static/add-coin.js"></script>
+</body>
+</html>
