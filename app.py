@@ -20,7 +20,7 @@ connect_db(app)
 
 @app.route("/")
 def homepage():
-    """Show homepage."""
+    """Show homepage with a list of coins in database."""
 
     coins = Coins.query.order_by(Coins.value.desc()).all()
     
