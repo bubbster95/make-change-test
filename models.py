@@ -26,13 +26,6 @@ class Coins(db.Model):
         nullable=False,
     )
 
-    ## If I have time, add a feature to give coins a photo
-    # image_url = db.Column(
-    #     db.Text,
-    #     default="https://images"
-    # )
-
-
     def __repr__(self):
         return f"<Coin #{self.id}: {self.name}, {self.value}>"
 

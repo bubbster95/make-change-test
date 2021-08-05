@@ -1,17 +1,13 @@
 import json
 from models import Coins
-from sqlalchemy.sql import exists
 
 def count_coins(amount):
-    """If coin <= amount is true:
-    Subtract the coins value from amount.
-    Increment that coins count, rinse and repeat.
-    If false: move to the next lowest coin in line"""
+    """Make change by subtracting largest coin possible from amount."""
 
     coin_count = {}
     amount = float(amount)
 
-    # order_by is to account for coins made by user.
+    # Order_by accounts for coins added by user.
     coins = Coins.query.order_by(Coins.value.desc()).all()
 
     for coin in coins:
@@ -33,6 +29,14 @@ def validate_form(data):
         errors["name"] = "This name already exists."
     if len(data["name"]) <= 0:
         errors["name"] = "This field is required."
-    if int(data["value"]) <= 0 :
+    if float(data["value"]) <= 0:
         errors["value"] = "This field is required and must be greater then 0."
     return errors
+
+def generate_response(data):
+    resp = {
+    "name": data["name"],
+    "value": data["value"]
+    }
+
+    return resp

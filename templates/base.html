@@ -1,8 +1,11 @@
 <!doctype html>
-<html>
-<head>
-  <title>Make Change</title>
-</head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerdery Test Will</title>
+  </head>
 <body>
   
   <div class="container">
@@ -10,15 +13,27 @@
     <div class="alert alert-{{ category }}">{{ message }}</div>
     {% endfor %}
 
-    {% block content %}
-    CONTENT GOES HERE
-    {% endblock %}
+    <h2>Make Change</h2>
+    <p>Coins in our bank:</p>
+    {% for coin in coins %}
+        <p style="display: inline;"><b>{{coin.name}}</b>: ${{coin.value}}</p>
+        <form action="/coins/remove/{{coin.id}}" method="POST" style="display: inline-block;">
+            <button>Remove</button>
+        </form>
+        <br>
+    {% endfor %}
+    <br>
 
-    <h1>Add New Coin</h1>
-    <div id="coin-values"></div>
+    <form method="POST"  action="/exchange">
+        <label for="currency">Currency To Exchange</label>
+        <input type="text" name="currency" placeholder="1.50" required>
+        <button>Exchange</button>
+    </form>
+
+    <h2>Add New Coin</h2>
     <form id="add-coin-form">
-      <div>Coin Name: <input id="name" required> <b id="name-err"></b> </div>
-      <div>Value: <input id="value" required> <b id="value-err"></b> </div>
+      <div>Coin Name: <input id="name" placeholder="gold" required> <b class="error" id="name-err"></b> </div>
+      <div>Value: <input type="number" step="0.01" id="value" placeholder="4.00" required> <b class="error" id="value-err"></b> </div>
       <button>Add Coin</button>
     </form>
 
