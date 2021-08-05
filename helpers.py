@@ -7,7 +7,7 @@ def count_coins(amount):
     coin_count = {}
     amount = float(amount)
 
-    # Order_by accounts for coins added by user.
+    # order_by() accounts for coins added by user.
     coins = Coins.query.order_by(Coins.value.desc()).all()
 
     for coin in coins:

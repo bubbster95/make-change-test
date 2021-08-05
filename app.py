@@ -23,7 +23,7 @@ def homepage():
     """Show homepage."""
 
     coins = Coins.query.order_by(Coins.value.desc()).all()
-
+    
     return render_template("base.html", coins = coins)
 
 @app.route("/exchange", methods=["POST"])
@@ -57,6 +57,7 @@ def add_new_coin():
         db.session.commit()
 
         flash(f"New coin added! {name}: {value}")
+
         return resp
 
 
